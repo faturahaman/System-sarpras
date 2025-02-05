@@ -39,7 +39,7 @@ if (isset($_POST['daftar-btn'])) {
         <hr class="border-violet-900 mb-6">
         
         <!-- Form Pendaftaran Admin -->
-        <form action="" method="POST">
+        <form id="form-daftar" action="" method="POST">
             <!-- Input untuk nama admin -->
             <div class="mb-4">
                 <label class="block text-violet-900 font-semibold mb-2" for="namaPegawai">Nama Admin</label>
@@ -58,7 +58,7 @@ if (isset($_POST['daftar-btn'])) {
             <!-- Tombol pendaftaran dan tombol kembali -->
             <div class="flex flex-col space-y-3">
                 <!-- Tombol untuk submit form -->
-                <button class="w-full bg-violet-900 text-white p-3 rounded-lg text-lg font-semibold hover:bg-violet-700 transition-all duration-300" type="submit" name="daftar-btn" onclick="daftarConfirm()">Daftar</button>
+                <button class="w-full bg-violet-900 text-white p-3 rounded-lg text-lg font-semibold hover:bg-violet-700 transition-all duration-300" type="button" id="daftar-btn">Daftar</button>
                 <!-- Tombol untuk kembali ke halaman login -->
                 <a href="login.php" class="w-full">
                     <button class="w-full bg-yellow-300 text-black p-3 rounded-lg text-lg font-semibold hover:bg-yellow-400 transition-all duration-300" type="button">Kembali</button>
@@ -68,17 +68,15 @@ if (isset($_POST['daftar-btn'])) {
         
         <!-- Menampilkan Pesan Sukses atau Error -->
         <?php if (isset($success_message)) : ?>
-            <!-- Pesan sukses akan ditampilkan jika pendaftaran berhasil -->
             <p class="text-green-600 font-semibold mt-4 text-center"><?php echo $success_message; ?></p>
         <?php elseif (isset($error_message)) : ?>
-            <!-- Pesan error akan ditampilkan jika pendaftaran gagal -->
             <p class="text-red-600 font-semibold mt-4 text-center"><?php echo $error_message; ?></p>
         <?php endif; ?>
     </div>
 
     <script>
-        // Fungsi konfirmasi pendaftaran menggunakan SweetAlert
-        function daftarConfirm() {
+        // Menambahkan event listener ke tombol daftar
+        document.getElementById('daftar-btn').addEventListener('click', function() {
             // Menampilkan popup konfirmasi dengan SweetAlert
             Swal.fire({
                 title: 'Apakah Anda Yakin ingin mendaftar?',
@@ -95,7 +93,7 @@ if (isset($_POST['daftar-btn'])) {
                     document.getElementById('form-daftar').submit();
                 }
             })
-        }
+        });
     </script>
 </body>
 </html>
